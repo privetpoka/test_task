@@ -1,14 +1,17 @@
 from pandas import read_csv, DataFrame
 import numpy as np
+### here is dataset without the last 20 result and parameters
 f_data=open('./data_set.csv','r')
 dataset = read_csv('./data_set.csv')
-#data = np.loadtxt(f_data,delimiter=',',skiprows=1,usecols=(1,2,4))
+#### here is we're checking parametres, which are corresponding between each other in order to exclude them
+print (dataset.corr())
 f_target=open('./target.csv','r') 
 target=np.loadtxt(f_target,delimiter=',',skiprows=1,usecols=1)
-#f_data=open('./data_set.csv','r')
 data = np.loadtxt(f_data,delimiter=',',skiprows=1,usecols=(1,2,4))
+### add column filled with ones
 one=np.ones((345,1))
 comlete=np.hstack((one,data))
+### eveluaiting 
 result=np.linalg.inv(data.T.dot(data)).dot(data.T).dot(target)
 print(result)
 print(result.shape)
