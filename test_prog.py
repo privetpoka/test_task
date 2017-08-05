@@ -27,3 +27,21 @@ evaluated_result = full_data_set_for_check.dot(result)
 my_error = (abs(target_data_for_check - evaluated_result))
 #print (np.mean(target_data_for_check))
 #print(np.mean(my_error)/np.mean(target_data_for_check))
+
+class Normal_Equation():
+	"""docstring for ClassName"""
+	def __init__(self):
+		self.about = "Normal equation"
+		self.W=[]
+
+	def evaluate(self,x,y):
+		m = x.shape[1]
+		one=np.ones((m,1))
+		complete=np.hstack((one,x))
+		self.W = np.linalg.inv(complete.T.dot(complete)).dot(complete.T).dot(y)
+	def predict (self, target):
+		m = target.shape[1]
+		one = np.ones((m,1))
+		return np.hstack((one,target)).dot(self.W)
+		
+
