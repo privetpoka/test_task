@@ -1,17 +1,16 @@
 import numpy as np
 class Gradient_Descent:
-    '''Linear Regression.'''
+    '''Gradient descent.'''
     def __init__(self):
         self.about = "Gradient descent"
-        self.theta = [] # model's weights
-        self.err = 0
+        self.theta = [] 
         
     def cost_function(self, y_real, y_pred): 
-        # cost function for gradient descent algorithm
+        
         return np.sum(abs(y_pred-y_real))/(len(y_real))
     
     def gradient_descent_step(self, learning_rate, dy, m, n, X_tr):
-        # one gradient descent step
+        
         s = (np.dot(dy.T, X_tr)).reshape(n, 1)
         dtheta = 2*(learning_rate*s/m).reshape(n, 1)
         return self.theta - dtheta
@@ -23,11 +22,11 @@ class Gradient_Descent:
         np.random.seed(0)
         X = X.astype(float)
         m = X.shape[0]
-        # add one's column to X
+        
         X = np.hstack( (np.ones(m).reshape(m, 1), X) )
         n = X.shape[1]
         
-        # thetaeights: random initialization
+        
         self.theta = np.random.randint(low = weight_low, high = weight_high, size=(n, 1))
             
         y_pred = np.dot(X, self.theta)
@@ -35,7 +34,7 @@ class Gradient_Descent:
         y = y.reshape(m, 1)
         k = 0
         
-        ########## Gradient descent's steps #########
+        
         while True:
             dy = y_pred - y
             theta_tmp = self.theta
@@ -51,8 +50,8 @@ class Gradient_Descent:
                 break
                 
             cost0 = cost1
-        #############################################
-        return self.theta # return model's weights
+        
+        return self.theta 
     
     def predict(self, X):
         m = X.shape[0]
