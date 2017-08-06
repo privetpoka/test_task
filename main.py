@@ -30,9 +30,9 @@ ne_res = ne.predict(data_set_for_check)
 ne_error = np.sum(abs(ne_res - target_data_for_check))/ne_res.shape[0]
 
 
-gd.fit(data,target,learning_rate=0.0001,nsteps=100000,weight_high=100000, weight_low=0)
+gd.fit(data,target,learning_rate=0.001,nsteps=10000000,weight_high=100000, weight_low=0)
 gd_res = gd.predict(data_set_for_check).reshape((data_set_for_check.shape[0],))
-gd_error = np.sum(abs(gd_res - target_data_for_check))/gd_res.shape[0]
+gd_error = np.sum(abs(gd_res- target_data_for_check))/gd_res.shape[0]
 
 print ('Normal equation:')
 print (ne_res)
